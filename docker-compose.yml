@@ -86,6 +86,22 @@ services:
       - app-network
     restart: unless-stopped
 
+    
+  adminer:
+    image: adminer:latest
+    container_name: lecture5-adminer
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+    environment:
+      - ADMINER_DEFAULT_SERVER=db
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
 # ============================================================
 # NETWORKS
 # ============================================================
