@@ -7,7 +7,7 @@ import requests
 import time
 from collections import Counter
 
-SERVICE_URL = "http://127.0.0.1:63501/info"
+SERVICE_URL = "http://127.0.0.1:56406/info"
 NUM_REQUESTS = 20
 
 print(f"🚀 Testing load balancing across pods...")
@@ -28,7 +28,7 @@ for i in range(NUM_REQUESTS):
             print(f"Request {i+1:2d}: Error - Status {response.status_code}")
     except Exception as e:
         print(f"Request {i+1:2d}: Failed - {e}")
-    
+
     time.sleep(0.1)
 
 print("\n" + "="*60)
@@ -38,15 +38,15 @@ print("="*60)
 if pod_responses:
     counter = Counter(pod_responses)
     total = len(pod_responses)
-    
+
     print(f"\nTotal successful requests: {total}")
     print(f"Number of unique pods serving requests: {len(counter)}\n")
-    
+
     for pod, count in counter.most_common():
         percentage = (count / total) * 100
         bar = "█" * int(percentage / 5)
         print(f"{pod}: {count:2d} requests ({percentage:5.1f}%) {bar}")
-    
+
     print("\n" + "="*60)
     if len(counter) > 1:
         print("✅ SUCCESS: Load balancing is working!")
