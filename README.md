@@ -1,5 +1,8 @@
 # Lecture 5: Docker & Kubernetes Demo
 
+---------------------------------------------- Assignment start -------------------------------------------------------------------
+
+
 ## Assignment 5 Solutions by Vaibhav Motwani
 Forked Repository:  
 👉 https://github.com/Vaibhav150123045/lecture5-dockerk8s-demo
@@ -87,6 +90,9 @@ With the app running, use these commands and briefly explain what each shows:
 
 ### 3. Aufgabe 3 - Deploy to Kubernetes
 #### 3(a) — Deployment Steps
+
+f) Screenshot: app in browser with tasks + kubectl get pods
+
 <img src="./assets/Assignment/Aufgabe 3(a)_f1.png" width="600" alt="Adminer UI">
 
 
@@ -94,12 +100,43 @@ With the app running, use these commands and briefly explain what each shows:
 
 #### 3(b) — Scaling & Load Balancing
 
+a) Scale to 5 replicas: kubectl scale deployment lecture5-web –replicas=5
+
+Answer -
+
+The given command was not working for me, so I used the following command:
+
+```kubectl scale deployment/lecture5-web --replicas=5```
+
+b) Run: python  test_load_balancing.py
+
+c) Screenshot: load balancing test output showing traffic distribution
+
+Answer - 
+
 <img src="./assets/Assignment/Aufgave 3(b)_c.png" width="600" alt="Adminer UI">
 
+d) Explain: How does Kubernetes distribute traffic? (2-3 sentences)
+
+Answer -
+
+Kubernetes typically distributes traffic using a Round-Robin or Random strategy managed by the kube-proxy component on each node. Instead of sending traffic directly to pods, the LoadBalancer sends it to the Service, which uses internal IP table rules to flip a "virtual coin" and route the request to any available pod labeled for that service.
 
 #### 3(c) — Self‑Healing
+
+c) Screenshot: pods before/during/after deletion
+
 <img src="./assets/Assignment/Aufgabe 3(c)_c.png" width="600" alt="Adminer UI">
 
+
+d) Explain: Why is self-healing important? (2-3 sentences)
+
+1. Reduces manual human effort to detect pod health and restarting pods
+2. Maintains high-availibility. Auto detection and restart will lead to quicker resolution, leading to about no downtime.
+3. Zero-downtime updates: when a new update is released, some pods will be running on older version and traffic will be gradually shifted towards newer pods (on newer version). Hence, there is no downtime in version upgrades.
+
+
+---------------------------------------------- Assignment completion -------------------------------------------------------------------
 
 
 
