@@ -1,5 +1,110 @@
 # Lecture 5: Docker & Kubernetes Demo
 
+## Assignment 5 Solutions by Vaibhav Motwani
+Forked Repository:  
+👉 https://github.com/Vaibhav150123045/lecture5-dockerk8s-demo
+
+Docker Hub Username:  
+👉 vm150123045
+
+### 📌 Overview
+This repository contains my solutions for Übungsblatt 05, covering Docker, Docker Compose, image optimization, container inspection, Kubernetes deployment, scaling, load balancing, and self‑healing.
+
+All required screenshots, explanations, and configuration changes are documented below.
+
+### 1. Aufgabe 1 — Modify the Docker Setup
+#### 1(a) — Added Adminer Service
+
+4. Take a screenshot showing the tasks table
+   
+<img src="./assets/Assignment/Aufgabe 1(a)_1.png" width="600" alt="Adminer UI">
+
+<img src="./assets/Assignment/Aufgabe 1(a)_2.png" width="600" alt="Adminer UI">
+
+
+#### 1(b) — Changed Base Image to Alpine
+
+a) What changes are needed to make it work with Alpine?
+
+Answer - 
+
+<img src="./assets/Assignment/Aufgabe 1(b)_a.png" width="600" alt="Adminer UI">
+
+b) Build both versions and compare sizes using docker images
+
+Answer - 
+
+<img src="./assets/Assignment/Aufgabe 1(b)_b.png" width="600" alt="Adminer UI">
+
+c) Document the size difference and any build issues you encountered
+
+Answer - 
+
+No build issues encountered when tried with python:3.11-alpine
+Size difference = 259.07 MB - 132.65 MB = 126.42 MB saved when moving from slim to alpine
+
+
+
+### 2. Aufgabe 2 - Docker Operations
+#### 2(a) — Image Tagging & Registry
+
+a) Build the image with a version tag: docker build -t task-app:v1.0 .
+
+<img src="./assets/Assignment/Aufgabe 2(a)_a.png" width="600" alt="Adminer UI">
+
+b) Create a Docker Hub account (free) and push your image
+
+c) Document the commands you used and include a screenshot of your image on Docker Hub
+
+Answer -
+
+Commands Used: 
+
+```
+docker login
+docker tag task-app:v1.0 vm150123045/task-app:v1.0
+docker push vm150123045/task-app:v1.0
+```
+
+Screenshot:
+
+<img src="./assets/Assignment/Aufgabe 2(a)_c.png" width="600" alt="Adminer UI">
+
+#### 2(b) — Container Inspection
+
+With the app running, use these commands and briefly explain what each shows:
+```docker compose logs web```
+- When I ran the app using “docker compose up -d” the app started but the terminal window stayed empty and logs were not being shown. When the above command was used, I could see the logs for the running application.
+
+```docker inspect lecture5-web```
+- This command gave me metadata about the image such as: current status, created time, paths, port bindings, network settings and more information.
+  
+```docker stats```
+- This command gave me snapshots of current system usage stats such as CONTAINER ID, NAME, CPU %, MEM USAGE / LIMIT, MEM %, NET I/O           BLOCK I/O, PIDS. And it provided the new snapshot at each small interval of less than 1s.
+
+
+
+
+### 3. Aufgabe 3 - Deploy to Kubernetes
+#### 3(a) — Deployment Steps
+<img src="./assets/Assignment/Aufgabe 3(a)_f1.png" width="600" alt="Adminer UI">
+
+
+<img src="./assets/Assignment/Aufgabe 3(a)_f2.png" width="600" alt="Adminer UI">
+
+#### 3(b) — Scaling & Load Balancing
+
+<img src="./assets/Assignment/Aufgave 3(b)_c.png" width="600" alt="Adminer UI">
+
+
+#### 3(c) — Self‑Healing
+<img src="./assets/Assignment/Aufgabe 3(c)_c.png" width="600" alt="Adminer UI">
+
+
+
+
+
+
 > DevOps for Cyber-Physical Systems | University of Bern
 
 A Task Manager app demonstrating Docker containerization and Kubernetes orchestration.
