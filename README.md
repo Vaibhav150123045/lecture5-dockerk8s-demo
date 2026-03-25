@@ -136,6 +136,28 @@ d) Explain: Why is self-healing important? (2-3 sentences)
 3. Zero-downtime updates: when a new update is released, some pods will be running on older version and traffic will be gradually shifted towards newer pods (on newer version). Hence, there is no downtime in version upgrades.
 
 
+
+## Issues and their resolution
+
+#### Aufgabe 1 issues and resolution:
+1. Initial issue that I was facing was that, when I tried to run the container, my port 5432 was busy with an older postgresql server. I had to kill the process from mac settings.
+
+2. Then I also found that port 5000 is also busy. Apparently mac uses it for Airplay and handoff. If you recieve a call on iphone, you can interact with the call on mac. Mac uses port 5000 for that. I had to stop that from my mac settings as well.
+
+Once these steps were done, I was able to run the container.
+
+#### Aufgabe 3(a) issues and resolution:
+1. In part d), I had already pushed the image to docker hub, but I was confused where do I have to update the username in k8s-web.yaml, apparantly I was able to figure it out later.
+2. In part e), I was not having minikube installed in my machine (I was continuing with kubernetes running in docker), and I couldn’t find an equivalent method to start the service lecture5-web-service using kubernetes in docker. I ended up installing and configuring minikube to run them.
+
+#### Aufgabe 3(b) issues and resolution:
+1. In part a) I used the command ‘kubectl scale deployment lecture5-web –replicas=5’ provided in the assignment sheet, but that was not working. Apparently it had a typo and I was able to find the correct command scale it using the command ‘kubectl scale deployment/lecture5-web --replicas=5’
+2. In part b) I had to change the service URL port to 56406 because my machine initialized the load balancer server on this port rather than the port mentioned earlier in the original code.
+
+
+
+
+
 ---------------------------------------------- Assignment completion -------------------------------------------------------------------
 
 
